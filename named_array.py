@@ -36,7 +36,7 @@ class named_array(np.ndarray):
                     return self[:, start]
                 else:
                     return self[:, start:start + current_range]
-        elif isinstance(ind, tuple) and all(isinstance(i, str) for i in ind):
+        elif (isinstance(ind, tuple) or isinstance(ind, list)) and all(isinstance(i, str) for i in ind):
             return np.column_stack(
                 [self[:, self.colnames.index(i)] for i in ind])
         else:
